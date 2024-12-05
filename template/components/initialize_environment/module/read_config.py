@@ -1,3 +1,12 @@
+"""
+Módulo: initialize_environment
+Descrição:
+    Este fluxo é responsável por ler o config.json
+    
+Autor: [vitor.silva@apsen.com.br]
+Última Modificação: [04/12/2024]
+"""
+
 import json
 from utilities.log_handler import log_info, log_error
 

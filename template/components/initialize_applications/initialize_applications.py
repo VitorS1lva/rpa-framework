@@ -1,48 +1,52 @@
 """
 Módulo: initialize_applications
 Descrição:
-    Com o sucesso do  estado de Initialize Environment a etapa de Initialize Applications tem como objetivo tratar quaisquer assuntos relacionados às aplicações utilizadas no script.
+    O estado de Initialize Applications tem como objetivo tratar quaisquer assuntos relacionados às aplicações utilizadas no script.
+    Ele é projetado para ser invocado em momentos específicos do processo, mas **não realiza transições automáticas no fluxo**.
 
     Descrição de funções:
-        kill_all_applications: esta função mata todos os processos de aplicações que serão utilizadas na automação (invocado neste estado e no final state)
+        kill_all_applications: esta função encerra todos os processos das aplicações que serão utilizadas na automação (invocado neste estado e no final state).
 
-        initialize_all_applications: esta função inicializa quaisquer aplicações utilizadas no processo, retornando uma variável que aponte para a aplicação, nesta etapa também deve-se considerar fazer logins, acesso a transações (SAP por exemplo), sua função é deixar o terreno o mais preparado possível para o estado de process
+        initialize_all_applications: esta função inicializa todas as aplicações necessárias para o processo, retornando uma variável que aponta para as aplicações.
+        Nesta etapa, também pode-se considerar logins e acessos a transações (ex.: SAP). Seu objetivo é preparar o ambiente para o estado de Process.
 
-        get_applications_to_initialize_kill: esta função é responsável por ler o arquivo applications.json(data) e dentro do arquivo capturar as variáveis que contém informações de interrupção e incialização de arquivos que se deseja manipular
+        get_applications_to_initialize_kill: esta função lê o arquivo `applications.json` e captura as variáveis com informações de interrupção e inicialização das aplicações a serem manipuladas.
 
-        validate_initialized_applications.py: esta função é responsável por validar as instâncias inicializadas das aplicações que serão utilizadas no processo
+        validate_initialized_applications: esta função valida as instâncias inicializadas das aplicações que serão utilizadas no processo.
 
 Autor: [vitor.silva@apsen.com.br]
-Última Modificação: [02/12/2024]
+Última Modificação: [04/12/2024]
 """
 
-from template.components.initialize_applications.module.get_applications_to_initialize_kill import get_applications_to_initialize
-from template.components.initialize_applications.module.get_applications_to_initialize_kill import get_applications_to_kill
+from utilities.log_handler import log_info, log_error
 from template.components.initialize_applications.module.kill_all_applications import kill_all_applications
 from template.components.initialize_applications.module.initialize_all_applications import initialize_all_applications
+from template.components.initialize_applications.module.get_applications_to_initialize_kill import get_applications_to_initialize
+from template.components.initialize_applications.module.get_applications_to_initialize_kill import get_applications_to_kill
 from template.components.initialize_applications.module.validate_initialized_applications import validate_initialized_applications
-from utilities.log_handler import log_info
 
 class InitializeApplications:
     def __init__(self, machine):
         self.machine = machine
-        self.initialized_apps = {}
 
     def execute(self):
         logger = self.machine.global_variables.get('logger', None)
+        log_info(logger, "Initialize Applications", "Inicializando aplicações...")
 
-        log_info(logger, "Initialize Applications", "Inicializando aplicações.")
+        try:
+            # Ler informações sobre as aplicações
+            applications_to_kill = get_applications_to_kill(logger)
 
-        # Executa as funções do estado
-        apps_to_initialize = get_applications_to_initialize(logger)
-        apps_to_kill = get_applications_to_kill(logger)
-        kill_all_applications(apps_to_kill, logger)
-        self.initialized_apps = initialize_all_applications(apps_to_initialize, logger)
-        validate_initialized_applications(self.initialized_apps, logger)
+            # Matar instâncias anteriores das aplicações
+            kill_all_applications(applications_to_kill, logger)
 
-        log_info(logger, "Initialize Applications", "Aplicações inicializadas com sucewsso.")
+            # Inicializar novas instâncias das aplicações
+            initialized_apps = initialize_all_applications()
 
-        # Passa para o próximo estado com os aplicativos inicializados
-        self.machine.global_variables['initialized_apps'] = self.initialized_apps
-        from template.components.get_queue_items import GetQueueItems
-        self.machine.transition_to(GetQueueItems(self.machine))
+            # Validar inicializações
+            validate_initialized_applications(initialized_apps, logger)
+
+            log_info(logger, "Initialize Applications", "Aplicações inicializadas com sucesso.")
+        except Exception as e:
+            log_error(logger, "Initialize Applications", f"Erro ao inicializar aplicações: {e}")
+            raise

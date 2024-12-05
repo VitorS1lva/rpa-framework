@@ -13,7 +13,7 @@ Descrição de funções:
     - update_queue_item_status: Atualiza o status do item no banco de dados após o processamento.
 
 Autor: [vitor.silva@apsen.com.br]
-Última Modificação: [03/12/2024]
+Última Modificação: [04/12/2024]
 """
 
 from template.components.process.module.process_item import (
@@ -30,6 +30,7 @@ class Process:
         self.machine = machine
 
     def execute(self):
+        config = self.machine.global_variables.get('config', None)
         logger = self.machine.global_variables.get('logger', None)
         current_item = self.machine.queue_items[0] if self.machine.queue_items else None
 
@@ -43,7 +44,7 @@ class Process:
 
         try:
             # Processa o item e obtém o status
-            status = process_item(current_item, logger)
+            status = process_item(current_item, logger, config)
 
             # Atualiza o status no banco de dados
             update_queue_item_status(current_item['ID'], status, logger)

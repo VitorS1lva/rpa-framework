@@ -16,13 +16,13 @@ Usos (Opcional):
     - É possivel alterar os dados que virão do banco de dados
 
 Autor: [Samuel Pierre] - EMAIL [samuel.joseph@apsen.com.br]
-Última Modificação: [02/12/2024] - Vitor Silva
+Última Modificação: [04/12/2024] - Vitor Silva
 """
 
 from utilities.database_connection import make_database_connection
 from utilities.log_handler import log_error
 
-def get_queue_items_from_db(logger):
+def get_queue_items_from_db(logger, limit):
     """
     Consulta o banco de dados Snowflake e retorna os itens da fila com status "Pendente".
     

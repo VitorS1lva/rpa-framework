@@ -9,40 +9,31 @@ Funções:
     - process_item: Processa o item e registra logs apropriados.
 
 Autor: [vitor.silva@apsen.com.br]
-Última Modificação: [03/12/2024]
+Última Modificação: [04/12/2024]
 """
 
+from utilities.update_queue_item_status import update_queue_item_status
+from utilities.add_to_report_table import add_to_report_table
 from utilities.log_handler import log_info, log_error
 
-# Definição de constantes para os status
-SUCCESS = "success"
-BUSINESS_RULE_EXCEPTION = "business_rule_exception"
-SYSTEM_EXCEPTION = "system_exception"
-
-def process_item(item, logger):
+def process_item(machine, item, logger):
     """
-    Processa um item e retorna o status do processamento.
+    Processa um único item da fila.
 
     Args:
-        item (dict): O item da fila.
-        logger: Logger para registrar eventos.
-
-    Returns:
-        str: O status do processamento (SUCCESS, BUSINESS_RULE_EXCEPTION, SYSTEM_EXCEPTION).
+        machine (object): Máquina contendo variáveis globais.
+        item (dict): Item a ser processado.
+        logger (object): Logger configurado.
     """
     try:
-        # Simulação da lógica de processamento
-        log_info(logger, "process_item", f"Processing item ID {item['ID']}.")
-        
-        # Exemplo de lógica de sucesso
-        if item.get('type') == 'valid':
-            return SUCCESS
-        # Exemplo de lógica de exceção de regra de negócio
-        elif item.get('type') == 'business_error':
-            return BUSINESS_RULE_EXCEPTION
-        # Simulação de uma exceção
-        else:
-            raise ValueError("System error occurred.")
+        # Lógica de processamento de item entra aqui, iportante lembrar que ela deve retornar algum status para alimentar os argumentos do update_queue_item_status e add_to_report_table
+        return
     except Exception as e:
-        log_error(logger, "process_item", f"System exception while processing item ID {item['ID']}: {e}")
-        return SYSTEM_EXCEPTION
+        log_error(logger, "Process Item", f"Erro no processamento do item {item['ID']}: {e}")
+        status = "Falha de Sistema"
+    
+    # Atualizar o status no Snowflake
+    update_queue_item_status(machine, item, status, logger)
+    
+    # Adicionar à tabela local para o relatório
+    add_to_report_table(machine, item, status)

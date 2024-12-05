@@ -1,33 +1,72 @@
-from template.components.initialize_applications.module.get_applications_to_initialize_kill import get_applications_to_kill
-from template.components.initialize_applications.module.get_applications_to_initialize_kill import get_applications_to_initialize
-from template.components.initialize_applications.module.kill_all_applications import kill_all_applications
-from template.components.initialize_applications.module.initialize_all_applications import initialize_all_applications
-from template.components.initialize_applications.module.validate_initialized_applications import validate_initialized_applications
-from utilities.log_handler import log_info
+"""
+Módulo: initialize_all_applications
+Descrição:
+    Este módulo é responsável por inicializar todas as aplicações necessárias para o processo. 
+    Ele pode incluir logins, acessos a transações e qualquer outra configuração essencial para o funcionamento correto das aplicações.
 
-class InitializeApplications:
-    def __init__(self, machine):
-        self.machine = machine
-        self.initialized_apps = {}
+    A função principal retorna uma lista de objetos ou variáveis que representam as instâncias das aplicações inicializadas.
 
-    def execute(self):
-        logger = self.machine.global_variables.get('logger', None)
+Funções:
+    - initialize_all_applications: inicializa as aplicações necessárias com base nas configurações fornecidas.
+        - Lê as configurações do arquivo `applications.json`.
+        - Inicia os processos das aplicações.
+        - Retorna uma lista contendo as instâncias inicializadas.
 
-        log_info(logger, "Initialize Applications", "Inicializando aplicações")
+Autor: [vitor.silva@apsen.com.br]
+Última Modificação: [04/12/2024]
+"""
 
-        # Obtém a lista de aplicativos para terminar do arquivo de configuração
-        apps_to_kill = get_applications_to_kill(logger)
-        if apps_to_kill:
-            kill_all_applications(apps_to_kill, logger)
+import json
+import subprocess
+from utilities.log_handler import log_info, log_error
+from pathlib import Path
 
-        # Executa as outras funções do estado
-        apps_to_initialize = get_applications_to_initialize(logger)
-        self.initialized_apps = initialize_all_applications(apps_to_initialize, logger)
-        validate_initialized_applications(self.initialized_apps, logger)
+def initialize_all_applications():
+    """
+    Inicializa todas as aplicações necessárias para o processo.
 
-        log_info(logger, "InitializeApplications", "Aplicações inciailizadas com sucesso.")
+    Returns:
+        list: Lista de dicionários contendo informações sobre as aplicações inicializadas.
+    """
+    initialized_apps = []
+    logger = None  # Substituir pelo logger global se disponível.
 
-        # Passa para o próximo estado com os aplicativos inicializados
-        self.machine.global_variables['initialized_apps'] = self.initialized_apps
-        from template.components.get_queue_items import GetQueueItems
-        self.machine.transition_to(GetQueueItems(self.machine))
+    try:
+        log_info(logger, "Initialize All Applications", "Carregando configurações de inicialização das aplicações.")
+        
+        # Carregar configurações do arquivo applications.json
+        config_path = Path("config/applications.json")
+        if not config_path.exists():
+            log_error(logger, "Initialize All Applications", "Arquivo application.json não encontrado.")
+            raise
+        
+        with open(config_path, 'r') as config_file:
+            applications_config = json.load(config_file)
+
+        for app_config in applications_config.get("applications", []):
+            app_name = app_config.get("name")
+            executable = app_config.get("executable_path")
+            arguments = app_config.get("arguments", [])
+
+            log_info(logger, "Initialize All Applications", f"Iniciando a aplicação: {app_name}")
+            
+            if not executable or not Path(executable).exists():
+                log_error(logger, "Initialize All Applications", f"Caminho do executável inválido para a aplicação: {app_name}")
+                continue
+
+            # Comando para iniciar o processo da aplicação
+            command = [executable] + arguments
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            
+            initialized_apps.append({
+                "name": app_name,
+                "process": process
+            })
+            
+            log_info(logger, "Initialize All Applications", f"Aplicação {app_name} inicializada com sucesso.")
+        
+        return initialized_apps
+
+    except Exception as e:
+        log_error(logger, "Initialize All Applications", f"Erro ao inicializar aplicações: {e}")
+        raise

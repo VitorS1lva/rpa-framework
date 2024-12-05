@@ -1,3 +1,12 @@
+"""
+Módulo: initialize_environment
+Descrição:
+    Este fluxo valida se as instâncias das aplicações específicadas no applications.json foram inicializadas com sucesso e podem ser utilizadas no process.
+    
+Autor: [vitor.silva@apsen.com.br]
+Última Modificação: [04/12/2024]
+"""
+
 from utilities.log_handler import log_info, log_error
 
 def validate_initialized_applications(initialized_apps, logger):

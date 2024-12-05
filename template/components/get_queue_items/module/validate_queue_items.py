@@ -1,3 +1,12 @@
+"""
+Módulo: initialize_environment
+Descrição:
+    Este fluxo é responsável ppr validar os itens capturados do banco de dados.
+    
+Autor: [vitor.silva@apsen.com.br]
+Última Modificação: [04/12/2024]
+"""
+
 from utilities.log_handler import log_info, log_error
 
 def validate_queue_items(queue_items, logger):

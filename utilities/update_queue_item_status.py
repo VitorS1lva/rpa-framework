@@ -7,54 +7,43 @@ Autor: [vitor.silva@apsen.com.br]
 Última Modificação: [03/12/2024]
 """
 
-from utilities.log_handler import log_info, log_error
-from utilities.database_connection import make_database_connection
+from utilities.add_to_report_table import add_to_report_table
+from utilities.log_handler import log_error
 
-def update_queue_item_status(item_id, status, logger):
+def update_queue_item_status(machine, item, status, logger, error_type=None, error_message=None):
     """
-    Atualiza o status de um item específico na tabela QUEUE_ITEMS no banco de dados Snowflake.
+    Atualiza o status de um item no banco de dados e adiciona informações na tabela de relatórios.
 
     Args:
-        item_id (str): ID do item a ser atualizado.
-        status (str): Novo status do item.
-        logger: Logger para registrar eventos.
+        machine (object): Máquina de estados contendo as variáveis globais.
+        item (dict): Dicionário com as informações completas do item.
+        status (str): Novo status do item (e.g., "Processado", "Erro").
+        logger (object): Logger para registrar mensagens.
+        error_type (str, optional): Tipo do erro, se aplicável.
+        error_message (str, optional): Mensagem de erro detalhada, se aplicável.
 
-    Raises:
-        Exception: Se ocorrer um erro ao atualizar o status no banco.
+    Returns:
+        None
     """
     try:
-        # Registrar início da atualização
-        log_info(logger, "update_queue_item_status", f"Atualizando status do item {item_id} para {status}.")
+        # Lógica de atualização do status no banco de dados
+        from utilities.database_connection import make_database_connection
+        conn = make_database_connection()
+        cursor = conn.cursor()
 
-        # Conectar ao banco de dados
-        connection = make_database_connection()
-        cursor = connection.cursor()
-
-        # Query para atualizar o status
-        query = """
+        query = f"""
             UPDATE FRAMEWORK.PUBLIC.QUEUE_ITEMS
-            SET STATUS = %s, UPDATED_AT = CURRENT_TIMESTAMP
-            WHERE ID = %s
+            SET STATUS = '{status}'
+            WHERE ID = '{item.get('ID', None)}'
         """
-        # Executar a query com parâmetros
-        cursor.execute(query, (status, item_id))
+        cursor.execute(query)
+        conn.commit()
 
-        # Confirma a transação
-        connection.commit()
+        # Atualiza o status no item localmente
+        item['Status'] = status
 
-        # Registrar sucesso
-        log_info(logger, "update_queue_item_status", f"Status do item {item_id} atualizado com sucesso para {status}.")
-
+        # Adiciona informações na tabela de relatórios
+        add_to_report_table(machine, item, error_type, error_message)
     except Exception as e:
-        # Registrar erro e relançar a exceção
-        log_error(logger, "update_queue_item_status", f"Erro ao atualizar status do item {item_id}: {e}")
-        raise
-    finally:
-        # Fechar conexão e cursor, garantindo liberação de recursos
-        try:
-            if cursor:
-                cursor.close()
-            if connection:
-                connection.close()
-        except Exception as close_error:
-            log_error(logger, "update_queue_item_status", f"Erro ao fechar conexão ou cursor: {close_error}")
+        log_error(logger, "update_queue_item_status", f"Erro ao atualizar status do item {item.get('ID', None)}: {e}")
+        raise RuntimeError(f"Erro ao atualizar o status no banco de dados: {e}")

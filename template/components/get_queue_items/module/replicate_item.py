@@ -1,3 +1,16 @@
+"""
+
+> Este módulo está inutilizado atualmente.
+
+
+Módulo: initialize_environment
+Descrição:
+    Este fluxo é responsável por replicar um item na fila localmente para processarmos esse item novamente.
+    
+Autor: [vitor.silva@apsen.com.br]
+Última Modificação: [04/12/2024]
+"""
+
 from utilities.log_handler import log_info, log_error
 
 def replicate_item(item, logger):

@@ -1,8 +1,4 @@
 # ***TODO***
-> criar lógica de final state
-> organizar a lógica de process/get queue item, elas ainda não se comunicam muito bem
-> criar a lógica de coleta de erro global
-> criar a herança de variável global para transportar as informações que estão dentro do config
 > organizar as utilities
 
 ---
