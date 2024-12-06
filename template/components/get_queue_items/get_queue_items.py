@@ -35,26 +35,27 @@ class GetQueueItems:
                 log_info(logger, "Get Queue Items", "Nenhum item restante na fila. Transitando para o FinalState.")
                 from template.components.final_state import FinalState
                 self.machine.transition_to(FinalState(self.machine))
+            
+            item = queue_items[0]  # Pegue o único item retornado
+            log_info(logger, "Get Queue Items", f"Item {item['ID']} encontrado e enviado para processamento.")
+
+            # Verifica se o item já atingiu o número máximo de tentativas
+            retry_count = item.get("retry_count", 0)
+            
+            if retry_count >= max_retries:
+                log_info(logger, "Get Queue Items", f"Item {item['ID']} atingiu o limite de {max_retries} tentativas. Atualizando para 'Falha'.")
+                from utilities.update_queue_item_status import update_queue_item_status
+                update_queue_item_status(self.machine, item, "Falha")
+                # Tenta buscar o próximo item após atualizar o status
+                self.execute()
             else:
-                item = queue_items[0]  # Pegue o único item retornado
-                log_info(logger, "Get Queue Items", f"Item {item['ID']} encontrado e enviado para processamento.")
+                # Adiciona o contador de tentativas ao item
+                item["retry_count"] = retry_count
+                self.machine.queue_items = [item]
 
-                # Verifica se o item já atingiu o número máximo de tentativas
-                retry_count = item.get("retry_count", 0)
-                if retry_count >= max_retries:
-                    log_info(logger, "Get Queue Items", f"Item {item['ID']} atingiu o limite de {max_retries} tentativas. Atualizando para 'Falha'.")
-                    from utilities.update_queue_item_status import update_queue_item_status
-                    update_queue_item_status(self.machine, item, "Falha")
-                    # Tenta buscar o próximo item após atualizar o status
-                    self.execute()
-                else:
-                    # Adiciona o contador de tentativas ao item
-                    item["retry_count"] = retry_count
-                    self.machine.queue_items = [item]
-
-                    # Transita para o estado de Process
-                    from template.components.process import Process
-                    self.machine.transition_to(Process(self.machine))
+                # Transita para o estado de Process
+                from template.components.process import Process
+                self.machine.transition_to(Process(self.machine))
         except Exception as e:
             log_error(logger, "Get Queue Items", f"Erro ao buscar item da fila: {e}")
             raise

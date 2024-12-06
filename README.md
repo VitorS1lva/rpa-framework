@@ -1,5 +1,7 @@
 # ***TODO***
 > organizar as utilities
+> refatorar o código de get_queue_items_from_db.py (para comportar limite de 1 item no retorno da query)
+> verificar qual tipo de conexão devemos manter para o framework (conexão com o banco de dados instanciada ou dinamica)
 
 ---
 

@@ -25,15 +25,18 @@ def process_item(machine, item, logger):
         item (dict): Item a ser processado.
         logger (object): Logger configurado.
     """
+    
     try:
-        # Lógica de processamento de item entra aqui, iportante lembrar que ela deve retornar algum status para alimentar os argumentos do update_queue_item_status e add_to_report_table
+        # Lógica de processamento de item entra aqui, iportante lembrar que ela deve retornar algum status para alimentar os argumentos do update_queue_item_status e add_to_report_table       
+
         return
+    
     except Exception as e:
         log_error(logger, "Process Item", f"Erro no processamento do item {item['ID']}: {e}")
         status = "Falha de Sistema"
     
     # Atualizar o status no Snowflake
     update_queue_item_status(machine, item, status, logger)
-    
+
     # Adicionar à tabela local para o relatório
     add_to_report_table(machine, item, status)
