@@ -1,0 +1,3 @@
+[ 06-12-2024 10:58:11 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 10:58:27 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 06-12-2024 10:58:27 ] - ERROR - read_config_file - Falha ao ler o JSON de configuração: [Errno 2] No such file or directory: 'config/config.json'

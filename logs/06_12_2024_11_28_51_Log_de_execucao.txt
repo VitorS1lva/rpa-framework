@@ -1,0 +1,9 @@
+[ 06-12-2024 11:28:51 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 11:28:52 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 06-12-2024 11:28:53 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 06-12-2024 11:28:53 ] - INFO - read_config_file  - JSON de configuração inicializado com sucesso.
+[ 06-12-2024 11:29:27 ] - INFO - clear_or_create_folders - Folder 'C:\Users\Young1\Desktop\teste_2' cleared.
+[ 06-12-2024 11:29:39 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 06-12-2024 11:29:46 ] - INFO - Initialize Environment - Executando InitializeApplications para preparar o ambiente.
+[ 06-12-2024 11:31:15 ] - INFO - Initialize Environment - Erro ao executar InitializeApplications: 'NoneType' object has no attribute 'info'
+[ 06-12-2024 11:31:20 ] - ERROR - Main - An unexpected error occurred: 'NoneType' object has no attribute 'info'

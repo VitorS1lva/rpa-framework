@@ -1,53 +1,94 @@
 """
-Módulo: initialize_environment
+Módulo: Initialize Environment
+
 Descrição:
-    O fluxograma se inicia no estado de Initialize Environment, seu objetivo é lidar com todo tipo de configuração relacionada ao ambiente de execução do script, limpeza/criação de pastas a serem utilizadas, inicialização de variáveis de globais e tabelas para coleta de informações de relatório.
+Este módulo tem como objetivo preparar o ambiente de execução do script. Ele realiza configurações essenciais,
+como a limpeza e criação de pastas necessárias, inicialização de variáveis globais e criação de tabelas para coleta
+de informações destinadas a relatórios. Este é o primeiro passo para garantir que o framework funcione de forma consistente e organizada.
 
-    Descrição de funções:
-        read_config_file: esta função lê o json configurado para receber as variáveis de config e seu output deve ser uma variável global com esses dados para uso em outras etapas do framework.
+Funções principais:
+1. **`read_config_file`**:
+   - Lê o arquivo JSON de configuração (config.json).
+   - Armazena os dados encontrados em uma variável global para que possam ser usados em outras etapas do framework.
 
-        clear_create_temp_folder: esta função limpa pastas de uso temporário da automação ou cria caso não existam (o ideal é que as pastas usadas sejam todas dentro da estrutura do projeto, nunca pastas de rede nem etc.).
+2. **`clear_create_temp_folder`**:
+   - Limpa pastas temporárias utilizadas pela automação ou as cria caso não existam.
+   - Recomendação: As pastas utilizadas devem estar dentro da estrutura do projeto e nunca em locais de rede ou externos.
 
-        create_general_variables: esta função é responsável por criar variáveis globais para uso em outros escopos (tais como variáveis de logs, variáveis de coleta de erro/sucesso e etc) e joga-las na lista de variáveis globais do state machine.
+3. **`create_general_variables`**:
+   - Inicializa variáveis globais necessárias para diferentes escopos.
+   - Exemplos de variáveis criadas: variáveis para logs, coleta de erros/sucessos, e outras informações de execução.
+   - Adiciona essas variáveis à lista global do state machine.
 
-Autor: [vitor.silva@apsen.com.br]
-Última Modificação: [04/12/2024]
+Autor(es):
+- Vitor Silva ([vitor.silva@apsen.com.br])
+- Samuel Joseph ([samuel.joseph@apsen.com.br])
+
+Última Modificação:
+- 10/12/2024
 """
 
-from template.components.initialize_environment.module.read_config import read_config_file
+from template.components.initialize_environment.module.read_config_file import read_config_file
+from template.components.get_queue_items.get_queue_items import GetQueueItems
 from utilities.clear_create_temp_folder import clear_create_temp_folder
 from template.components.initialize_environment.module.create_general_variables import create_general_variables
 from utilities.log_handler import log_info
-from template.components.initialize_applications import InitializeApplications
+from template.components.initialize_applications.initialize_applications import InitializeApplications
+
 
 class InitializeEnvironment:
+    """
+    Este módulo tem como objetivo preparar o ambiente de execução do script. Ele realiza configurações essenciais,
+    como a limpeza e criação de pastas necessárias, inicialização de variáveis globais e criação de tabelas para coleta
+    de informações destinadas a relatórios. Este é o primeiro passo para garantir que o framework funcione de forma consistente e organizada.
+
+    Funções principais:
+    1. **`read_config_file`**:
+    - Lê o arquivo JSON de configuração (config.json).
+    - Armazena os dados encontrados em uma variável global para que possam ser usados em outras etapas do framework.
+
+    2. **`clear_create_temp_folder`**:
+    - Limpa pastas temporárias utilizadas pela automação ou as cria caso não existam.
+    - Recomendação: As pastas utilizadas devem estar dentro da estrutura do projeto e nunca em locais de rede ou externos.
+
+    3. **`create_general_variables`**:
+    - Inicializa variáveis globais necessárias para diferentes escopos.
+    - Exemplos de variáveis criadas: variáveis para logs, coleta de erros/sucessos, e outras informações de execução.
+    - Adiciona essas variáveis à lista global do state machine.
+
+    """
+
     def __init__(self, machine):
         self.machine = machine
-
+        
     def execute(self):
-        logger = self.machine.global_variables.get('logger', None)
+        
+        self.logger = self.machine.global_variables.get('logger', None)
+        log_info(self.logger, "Initialize Environment", "Inicializando ambiente.")
 
-        log_info(logger, "Initialize Environment", "Inicializando ambiente.")
+        # Cria as variáveis globais
+        create_general_variables(self.machine, self.logger)
 
         # Lê o arquivo de configuração
-        read_config_file(self.machine, logger)
+        read_config_file(self.machine, self.logger)
+        
         # Limpa ou cria as pastas temporárias
-        clear_create_temp_folder(self.machine, logger)
-        # Cria as variáveis globais
-        create_general_variables(self.machine, logger)
+        clear_create_temp_folder(self.machine, self.logger)
+        
+        log_info(self.logger, "Initialize Environment", "Inicialização do ambiente completa.")
 
-        log_info(logger, "Initialize Environment", "Inicialização do ambiente completa.")
-
-        # Executa o módulo InitializeApplications
-        log_info(logger, "Initialize Environment", "Executando InitializeApplications para preparar o ambiente.")
         try:
-            init_applications = InitializeApplications(self.machine)
+            # Transição para o estado InitializeApplications - Proximo modulo
+            log_info(self.logger, "Initialize Environment", "Executando InitializeApplications para preparar o ambiente.")
+            init_applications = InitializeApplications(self.machine, self.logger)
             init_applications.execute()
-        except Exception as e:
-            log_info(logger, "Initialize Environment", f"Erro ao executar InitializeApplications: {e}")
-            raise
 
-        # Transição para o estado GetQueueItems
-        log_info(logger, "Initialize Environment", "Transitando para GetQueueItems.")
-        from template.components.get_queue_items import GetQueueItems
-        self.machine.transition_to(GetQueueItems(self.machine))
+            # Transição para o estado GetQueueItems - Proximo modulo
+            log_info(self.logger, "GetQueueItems ", "Executando GetQueueItems para pegar os itens de fila.")
+            self.machine.transition_to(GetQueueItems(self.machine))
+            init_applications = GetQueueItems(self.machine)
+            init_applications.execute(self.logger)
+
+        except Exception as e:
+            log_info(self.logger, "Initialize Environment", f"Erro ao executar InitializeApplications: {e}")
+

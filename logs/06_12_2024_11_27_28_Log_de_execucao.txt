@@ -1,0 +1,5 @@
+[ 06-12-2024 11:27:28 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 11:27:31 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 06-12-2024 11:27:33 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 06-12-2024 11:27:33 ] - INFO - read_config_file  - JSON de configuração inicializado com sucesso.
+[ 06-12-2024 11:28:26 ] - INFO - clear_or_create_folders - Folder 'C:\Users\Young1\Desktop\teste_2' cleared.

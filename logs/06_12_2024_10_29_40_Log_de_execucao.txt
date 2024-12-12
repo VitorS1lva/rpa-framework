@@ -1,0 +1,2 @@
+[ 06-12-2024 10:29:40 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 10:29:40 ] - ERROR - Main - An unexpected error occurred: cannot import name 'SUCCESS' from 'template.components.process.module.process_item' (C:\Users\Young1\Desktop\fr\rpa-framework\template\components\process\module\process_item.py)

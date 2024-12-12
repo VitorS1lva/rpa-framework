@@ -1,0 +1,9 @@
+[ 11-12-2024 14:16:40 ] - INFO - Main - StateMachine execution started.
+[ 11-12-2024 14:16:40 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 11-12-2024 14:16:40 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 11-12-2024 14:16:40 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 11-12-2024 14:16:40 ] - INFO - clear_create_temp_folder - Diretório 'C:\Users\Young1\Desktop\teste222222' limpo com sucesso.
+[ 11-12-2024 14:16:40 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 11-12-2024 14:17:39 ] - INFO - Initialize Environment - Executando InitializeApplications para preparar o ambiente.
+[ 11-12-2024 14:17:39 ] - INFO - Initialize Applications - Inicializando aplicações...
+[ 11-12-2024 14:17:39 ] - INFO - get_applications_to_kill - Lista de aplicativos para encerrar carregada com sucesso.

@@ -1,0 +1,2 @@
+[ 06-12-2024 10:02:36 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 10:06:43 ] - ERROR - Main - An unexpected error occurred: cannot import name 'clear_create_temp_folder' from 'utilities.clear_create_temp_folder' (C:\Users\Young1\Desktop\fr\rpa-framework\utilities\clear_create_temp_folder.py)

@@ -1,0 +1,33 @@
+{
+    "development":{
+		"ProjectName":"RPA5002",
+		"businessProcessName":"",
+		"maxRetryNumberInitApplications":3,
+
+		"localBucketDir": "01-Data\\Temp\\",
+		"mainOutputFolderPath": "01-Data\\Output\\",
+		"screenshotsFolderPath": "{0}\\01-Data\\Temp\\Exception_Screenshot",
+
+	"assets":{
+			"tenantId":{
+				"name":"m365TenantId",
+				"orchestratorFolder":"Shared"
+			},
+			"clientId":{
+				"name":"m365ClientId",
+				"orchestratorFolder":"Shared"
+			}
+		},
+
+		"credentials":{
+			"cogtiveCredentials":{
+				"name":"cogtiveCredentials",
+				"orchestratorFolder":"Shared"
+			},
+			"mailCredential":{ 
+				"name":"multipleSysRobotCredential",
+				"orchestratorFolder":"Shared"
+			}
+		}
+    }
+}

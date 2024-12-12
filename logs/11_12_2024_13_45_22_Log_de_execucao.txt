@@ -1,0 +1,16 @@
+[ 11-12-2024 13:45:22 ] - INFO - Main - StateMachine execution started.
+[ 11-12-2024 13:45:22 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 11-12-2024 13:45:22 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 11-12-2024 13:45:22 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 11-12-2024 13:45:22 ] - INFO - clear_create_temp_folder - Diretório 'C:\Users\Young1\Desktop\teste222222' limpo com sucesso.
+[ 11-12-2024 13:45:22 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 11-12-2024 13:45:22 ] - INFO - Initialize Environment - Executando InitializeApplications para preparar o ambiente.
+[ 11-12-2024 13:45:22 ] - INFO - Initialize Applications - Inicializando aplicações...
+[ 11-12-2024 13:45:22 ] - INFO - get_applications_to_kill - Lista de aplicativos para encerrar carregada com sucesso.
+[ 11-12-2024 13:45:22 ] - INFO - kill_all_applications - Aplicação encerrada com sucesso: notepad.exe
+[ 11-12-2024 13:45:22 ] - INFO - kill_all_applications - Aplicação encerrada com sucesso: chrome.exe
+[ 11-12-2024 13:45:22 ] - INFO - Initialize All Applications - Carregando configurações de inicialização das aplicações.
+[ 11-12-2024 13:45:23 ] - INFO - Initialize Applications - Aplicações inicializadas com sucesso.
+[ 11-12-2024 13:45:23 ] - INFO - GetQueueItems  - Executando InitializeApplications para preparar o ambiente.
+[ 11-12-2024 13:45:23 ] - INFO - Get Queue Items - Buscando um item da fila no banco de dados.
+[ 11-12-2024 13:45:23 ] - INFO - Get Queue Items - Item 1 encontrado e enviado para processamento.

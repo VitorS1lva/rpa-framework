@@ -1,0 +1,5 @@
+[ 06-12-2024 11:21:13 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 11:21:15 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 06-12-2024 11:21:16 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 06-12-2024 11:21:16 ] - INFO - read_config_file  - JSON de configuração inicializado com sucesso.
+[ 06-12-2024 11:21:27 ] - INFO - clear_or_create_folders - Folder 'C:\Users\Young1\Desktop\fr\rpa-framework\data\Output' cleared.

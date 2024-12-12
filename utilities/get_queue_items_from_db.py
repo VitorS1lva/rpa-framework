@@ -35,6 +35,7 @@ def get_queue_items_from_db(logger, limit):
     Levanta:
         Exception: Para quaisquer erros durante a consulta e manipulação do banco de dados.
     """
+    # TODO: RETORNAR APENAS 1 ITEM
     try:
         conn = make_database_connection()
         cursor = conn.cursor()

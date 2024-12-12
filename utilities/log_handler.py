@@ -19,8 +19,8 @@ def get_log_file_name():
     Gera o nome do arquivo de log no formato desejado:
     [DD-MM-YYYY HH:MM:SS] - Log de execução.txt
     """
-    timestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-    return f"[ {timestamp} ] - Log de execução.txt"
+    timestamp = datetime.now().strftime("%d_%m_%Y_%H_%M_%S")
+    return f"{timestamp}_Log_de_execucao.txt"
 
 def setup_logger():
     """

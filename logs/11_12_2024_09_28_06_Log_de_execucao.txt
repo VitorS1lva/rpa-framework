@@ -1,0 +1,13 @@
+[ 11-12-2024 09:28:06 ] - INFO - Main - StateMachine execution started.
+[ 11-12-2024 09:28:09 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 11-12-2024 09:28:09 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 11-12-2024 09:28:09 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 11-12-2024 09:28:19 ] - INFO - clear_create_temp_folder - Diretório 'C:\Users\Young1\Desktop\teste222222' limpo com sucesso.
+[ 11-12-2024 09:28:26 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 11-12-2024 09:28:36 ] - INFO - Initialize Environment - Executando InitializeApplications para preparar o ambiente.
+[ 11-12-2024 09:29:32 ] - INFO - Initialize Applications - Inicializando aplicações...
+[ 11-12-2024 09:29:53 ] - INFO - get_applications_to_kill - Lista de aplicativos para encerrar carregada com sucesso.
+[ 11-12-2024 09:30:39 ] - INFO - kill_all_applications - Aplicação encerrada com sucesso: notepad.exe
+[ 11-12-2024 09:30:44 ] - INFO - kill_all_applications - Aplicação encerrada com sucesso: chrome.exe
+[ 11-12-2024 09:31:44 ] - ERROR - Initialize Applications - Erro ao inicializar aplicações: initialize_all_applications() takes 0 positional arguments but 1 was given
+[ 11-12-2024 09:31:49 ] - INFO - Main - StateMachine execution finished successfully.

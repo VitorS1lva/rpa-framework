@@ -1,0 +1,4 @@
+[ 06-12-2024 11:24:16 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 11:24:18 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 06-12-2024 11:24:19 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 06-12-2024 11:24:19 ] - INFO - read_config_file  - JSON de configuração inicializado com sucesso.

@@ -1,0 +1,7 @@
+[ 06-12-2024 11:37:11 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 11:37:15 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 06-12-2024 11:37:15 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 06-12-2024 11:37:15 ] - INFO - read_config_file  - JSON de configuração inicializado com sucesso.
+[ 06-12-2024 11:37:28 ] - INFO - clear_or_create_folders  - Arquivo C:\Users\Young1\Desktop\teste222222 criado com sucesso!
+[ 06-12-2024 11:38:12 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 06-12-2024 11:38:15 ] - INFO - Initialize Environment - Executando InitializeApplications para preparar o ambiente.

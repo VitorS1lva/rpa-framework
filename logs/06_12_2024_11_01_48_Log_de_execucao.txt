@@ -1,0 +1,2 @@
+[ 06-12-2024 11:01:48 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 11:01:53 ] - INFO - Initialize Environment - Inicializando ambiente.

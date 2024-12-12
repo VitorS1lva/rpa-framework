@@ -1,0 +1,4 @@
+[ 06-12-2024 11:06:00 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 11:06:03 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 06-12-2024 11:06:03 ] - ERROR - read_config_file  - O arquivo em questão não existe [Errno 2] No such file or directory: 'config/config.json'
+[ 06-12-2024 11:06:03 ] - ERROR - Main - An unexpected error occurred: 'StateMachine' object is not iterable

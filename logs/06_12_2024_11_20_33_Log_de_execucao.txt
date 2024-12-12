@@ -1,0 +1,5 @@
+[ 06-12-2024 11:20:33 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 11:20:41 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 06-12-2024 11:20:55 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 06-12-2024 11:21:01 ] - INFO - read_config_file  - JSON de configuração inicializado com sucesso.
+[ 06-12-2024 11:21:01 ] - ERROR - Main - An unexpected error occurred: 'StateMachine' object is not iterable

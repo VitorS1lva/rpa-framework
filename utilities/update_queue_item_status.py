@@ -1,16 +1,16 @@
 """
 Módulo: update_queue-item.py
 Descrição:
-    Este script se encarrega de atualizar o status do item processado no process_item.py no snowflake, seus argumentos de entrada recebem os parâmetros necessário para query e atualização de informações
+Este script se encarrega de atualizar o status do item processado no process_item.py no snowflake, seus argumentos de entrada recebem os parâmetros necessário para query e atualização de informações
 
 Autor: [vitor.silva@apsen.com.br]
 Última Modificação: [03/12/2024]
 """
-
+# TODO: ATUALIZAR DOCUMENTAÇÃO
 from utilities.add_to_report_table import add_to_report_table
 from utilities.log_handler import log_error
 
-def update_queue_item_status(machine, item, status, logger, error_type=None, error_message=None):
+def update_queue_item_status(item, status, logger, error_message=None):
     """
     Atualiza o status de um item no banco de dados e adiciona informações na tabela de relatórios.
 
@@ -43,7 +43,7 @@ def update_queue_item_status(machine, item, status, logger, error_type=None, err
         item['Status'] = status
 
         # Adiciona informações na tabela de relatórios
-        add_to_report_table(machine, item, error_type, error_message)
+        add_to_report_table(item, status, logger, error_message)
     except Exception as e:
         log_error(logger, "update_queue_item_status", f"Erro ao atualizar status do item {item.get('ID', None)}: {e}")
         raise RuntimeError(f"Erro ao atualizar o status no banco de dados: {e}")

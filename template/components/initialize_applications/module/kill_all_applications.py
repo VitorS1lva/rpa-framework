@@ -1,14 +1,16 @@
 """
-Módulo: initialize_environment
+Módulo: kill_all_applications
 Descrição:
-    Este fluxo recebe o argumento de get_applications_to_kill e encerra as aplicações capturadas do application.json
+Este fluxo recebe o argumento de `get_applications_to_kill` e encerra as aplicações capturadas do `application.json`.
+Ou seja, o modulo `get_applications_to_kill` será inicializado e os dados recebidos serão passados para este modulo `kill_all_applications`.
+Os dados recebidos estarão numa lista.
     
-Autor: [vitor.silva@apsen.com.br]
-Última Modificação: [04/12/2024]
+Autor: [vitor.silva@apsen.com.br] | [samuel.joseph@apsen.com.br]
+Última Modificação: [10/12/2024]
 """
 
 import os
-from utilities.log_handler import log_info, log_error
+from utilities.log_handler import *
 
 def kill_all_applications(applications_to_kill, logger):
     """

@@ -1,0 +1,2 @@
+[ 06-12-2024 10:07:19 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 10:09:02 ] - ERROR - Main - An unexpected error occurred: cannot import name 'InitializeApplications' from 'template.components.initialize_applications' (C:\Users\Young1\Desktop\fr\rpa-framework\template\components\initialize_applications\__init__.py)

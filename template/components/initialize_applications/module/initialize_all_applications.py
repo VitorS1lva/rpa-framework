@@ -12,61 +12,32 @@ Funções:
         - Inicia os processos das aplicações.
         - Retorna uma lista contendo as instâncias inicializadas.
 
-Autor: [vitor.silva@apsen.com.br]
-Última Modificação: [04/12/2024]
+Autor: [vitor.silva@apsen.com.br] | [samuel.joseph@apsen.com.br]
+Última Modificação: [11/12/2024]
 """
-
-import json
-import subprocess
 from utilities.log_handler import log_info, log_error
-from pathlib import Path
+from utilities.Chrome.initialize_chrome import initialize_chrome
 
-def initialize_all_applications():
+
+def initialize_all_applications(list_of_apps_to_initialize, logger):
     """
     Inicializa todas as aplicações necessárias para o processo.
 
     Returns:
         list: Lista de dicionários contendo informações sobre as aplicações inicializadas.
     """
-    initialized_apps = []
-    logger = None  # Substituir pelo logger global se disponível.
-
+    list_of_opened_apps = []
+    # TODO: O MODULO `ASSETS` SERA O SNOWFLAKE
+    # TODO: CRIAR UM INSTANCIADOR DE APLICATIVOS MAIS ROBUSTO, ONDE ELE PODERA RECEBER EXCEÇÕES
     try:
         log_info(logger, "Initialize All Applications", "Carregando configurações de inicialização das aplicações.")
-        
-        # Carregar configurações do arquivo applications.json
-        config_path = Path("config/applications.json")
-        if not config_path.exists():
-            log_error(logger, "Initialize All Applications", "Arquivo application.json não encontrado.")
-            raise
-        
-        with open(config_path, 'r') as config_file:
-            applications_config = json.load(config_file)
+        # CHAMAR O MODULO DE ABERTURA DE CHROME - SALVAR A INSTANCIA DESSA ABERTURA NA LISTA QUE SERA RETORNADA  (list_of_opened_apps)
+        driver = initialize_chrome()
+        list_of_opened_apps.append(driver)
 
-        for app_config in applications_config.get("applications", []):
-            app_name = app_config.get("name")
-            executable = app_config.get("executable_path")
-            arguments = app_config.get("arguments", [])
+        # CHAMAR O MODULO DE ABERTURA DO SAP - SALVAR A INSTANCIA DESSA ABERTURA NA LISTA QUE SERA RETORNADA  (list_of_opened_apps)
 
-            log_info(logger, "Initialize All Applications", f"Iniciando a aplicação: {app_name}")
-            
-            if not executable or not Path(executable).exists():
-                log_error(logger, "Initialize All Applications", f"Caminho do executável inválido para a aplicação: {app_name}")
-                continue
-
-            # Comando para iniciar o processo da aplicação
-            command = [executable] + arguments
-            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            
-            initialized_apps.append({
-                "name": app_name,
-                "process": process
-            })
-            
-            log_info(logger, "Initialize All Applications", f"Aplicação {app_name} inicializada com sucesso.")
-        
-        return initialized_apps
-
+        return list_of_opened_apps
     except Exception as e:
         log_error(logger, "Initialize All Applications", f"Erro ao inicializar aplicações: {e}")
         raise

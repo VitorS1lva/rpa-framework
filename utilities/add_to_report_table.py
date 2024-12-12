@@ -7,7 +7,7 @@ Autor: [vitor.silva@apsen.com.br]
 Última Modificação: [04/12/2024]
 """
 
-def add_to_report_table(machine, item, error_type=None, error_message=None):
+def add_to_report_table(item, status, logger, error_message):
     """
     Adiciona informações sobre um item processado na tabela global de relatórios.
 
@@ -28,11 +28,9 @@ def add_to_report_table(machine, item, error_type=None, error_message=None):
 
         # Adiciona o item ao relatório, incluindo tipo e mensagem de erro, se aplicáveis
         report_table.append({
-            'ID': item.get('ID', None),
-            'Name': item.get('Name', None),  # Exemplo de coluna extra (substitua por colunas reais)
-            'Status': item.get('Status', None),
-            'ErrorType': error_type,
-            'ErrorMessage': error_message
+            'nomeDoVideo': item.get('nomeDoVideo', None),
+            'errortype': status,
+            'errormessage': error_message
         })
 
         # Atualiza a variável global

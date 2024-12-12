@@ -1,0 +1,2 @@
+[ 06-12-2024 10:09:57 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 10:10:43 ] - ERROR - Main - An unexpected error occurred: name 'FinalState' is not defined

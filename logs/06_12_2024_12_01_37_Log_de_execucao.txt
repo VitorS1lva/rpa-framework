@@ -1,0 +1,2 @@
+[ 06-12-2024 12:01:37 ] - INFO - Main - StateMachine execution started.
+[ 06-12-2024 12:01:37 ] - ERROR - Main - An unexpected error occurred: 'StateMachine' object has no attribute 'global_variables'
