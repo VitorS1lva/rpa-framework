@@ -86,25 +86,28 @@ class GetQueueItems:
 
 
                 while True:
-                    item = queue_items[0]  # Pega o único item retornado
-                    log_info(logger, "Get Queue Items", f"Item {item['ID']} encontrado e enviado para processamento.")
+                    #item = queue_items[0]  # Pega o único item retornado
+                    log_info(logger, "Get Queue Items", f"Item {queue_items['id']} encontrado e enviado para processamento.")
 
                     # Transita para o estado de Process
-                    status, error_message = process(item, logger)
+                    status, error_message = process(queue_items, logger)
 
                     if status == "SUCCESS":
-                        log_info(logger, "Process", f"Item {item['ID']} processado com sucesso.")
-                        update_queue_item_status(item, "Sucesso", logger, error_message)
+                        log_info(logger, "Process", f"Item {queue_items['id']} processado com sucesso.")
+                        update_queue_item_status(queue_items, "Sucesso", logger, error_message)
+                        break
                     elif status == "BUSINESS_RULE_EXCEPTION":
-                        log_info(logger, "Process", f"Item {item['ID']} descartado por regra de negócio.")
-                        update_queue_item_status(item, "BRE", logger, error_message)
+                        log_info(logger, "Process", f"Item {queue_items['id']} descartado por regra de negócio.")
+                        update_queue_item_status(queue_items, "BRE", logger, error_message)
+                        break
                     elif status == "SYSTEM_EXCEPTION":
-                        item["retry_number"] += 1 
-                        if item["retry_number"] >= max_retries:   
-                            log_info(logger, "Get Queue Items", f"Item {item['ID']} atingiu o limite de {max_retries} tentativas. Atualizando para 'Falha'.")
-                            update_queue_item_status(item, "Falha", logger, error_message)
+                        queue_items["retry_number"] += 1 
+                        if queue_items["retry_number"] >= max_retries:   
+                            log_info(logger, "Get Queue Items", f"Item {queue_items['ID']} atingiu o limite de {max_retries} tentativas. Atualizando para 'Falha'.")
+                            update_queue_item_status(queue_items, "Falha", logger, error_message)
+                            # TODO: A aplicação deve ser reiniciada, logo o escopo de intialize_applications deve ser invocado aqui dentro, também devemos adicinoar uma lógica de captura ao utilities para ser chamada aqui
                             break
-                        log_info(logger, "Process", f"Erro de sistema ao processar item {item['ID']}. Item será retentado pela {item["retry_number"]} vez.")
+                        log_info(logger, "Process", f"Erro de sistema ao processar item {queue_items['ID']}. Item será retentado pela {queue_items["retry_number"]} vez.")
         
         except Exception as e:
             log_error(logger, "Get Queue Items", f"Erro ao buscar item da fila: {e}")

@@ -6,10 +6,10 @@ def get_applications_to_kill(logger):
     """
     Módulo: get_applications_to_kill
     Descrição:
-    Este fluxo é responsável por ler o `applications.json` e trazer a lista de aplicativos em execução que devem ser encerrados.
+    Este fluxo é responsável por ler o `config.json` e trazer a lista de aplicativos em execução que devem ser encerrados.
         
     Bibliotecas:
-    - `json`: Utilizada para manipulação do arquivo `applications.json`.
+    - `json`: Utilizada para manipulação do arquivo `config.json`.
     - `utilities.log_handler`: Contém as funções `log_info` e `log_error` para geração de logs.
       - `log_info`: Registra logs de informações gerais.
       - `log_error`: Registra logs relacionados a erros durante a execução.
@@ -28,7 +28,7 @@ def get_applications_to_kill(logger):
     - Uma lista de aplicativos a serem encerrados.
     """
     try:
-        with open('data/applications.json', 'r') as file:
+        with open('data/config.json', 'r') as file:
             data = json.load(file)
         log_info(logger, "get_applications_to_kill", "Lista de aplicativos para encerrar carregada com sucesso.")
         return data["ApplicationsToKill"]

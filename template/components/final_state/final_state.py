@@ -27,16 +27,17 @@ class FinalState:
         log_info(logger, "Final State", "Iniciando encerramento do processo.")
 
         try:
-            # Limpa recursos temporários
-            cleanup_resources(logger)
+            print("Este é o final state...")
+            # # Limpa recursos temporários
+            # cleanup_resources(logger)
 
-            # Encerra todas as aplicações relacionadas
-            kill_applications(logger)
+            # # Encerra todas as aplicações relacionadas
+            # kill_applications(logger)
 
-            # Registra um resumo do processo no log
-            log_summary(self.machine, logger)
+            # # Registra um resumo do processo no log
+            # log_summary(self.machine, logger)
 
-            log_info(logger, "Final State", "Processo encerrado com sucesso.")
+            # log_info(logger, "Final State", "Processo encerrado com sucesso.")
         except Exception as e:
             log_error(logger, "Final State", f"Erro ao encerrar o processo: {e}")
             raise

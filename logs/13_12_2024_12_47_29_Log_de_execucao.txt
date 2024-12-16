@@ -1,0 +1,11 @@
+[ 13-12-2024 12:47:29 ] - INFO - Main - StateMachine execution started.
+[ 13-12-2024 12:47:29 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 13-12-2024 12:47:29 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 13-12-2024 12:47:29 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 13-12-2024 12:47:29 ] - ERROR - clear_create_temp_folder - Erro ao limpar/criar o diretório 'C:\Users\Young1\Desktop\teste222222': [WinError 3] O sistema não pode encontrar o caminho especificado: 'C:\\Users\\Young1\\Desktop\\teste222222'
+[ 13-12-2024 12:47:29 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 13-12-2024 12:47:29 ] - INFO - GetQueueItems  - Executando GetQueueItems para pegar os itens de fila.
+[ 13-12-2024 12:47:29 ] - INFO - Get Queue Items - Buscando item da fila no banco de dados.
+[ 13-12-2024 12:47:39 ] - INFO - Get Queue Items - Item 1 encontrado e enviado para processamento.
+[ 13-12-2024 12:54:33 ] - INFO - Process - Iniciando processamento do item {'id': 1, 'creation_date_time': '', 'job_id': '', 'specificContent': {'nomeDoVideo': 'Aula de C# 1 - Iniciante'}}.
+[ 13-12-2024 13:16:29 ] - ERROR - Get Queue Items - Erro ao buscar item da fila: 'ID'

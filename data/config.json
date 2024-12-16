@@ -4,6 +4,8 @@
 		"businessProcessName":"",
 		"maxRetryNumberInitApplications":3,
 
+		"ApplicationsToKill": ["notepad.exe", "chrome.exe"],
+
 		"localBucketDir": "01-Data\\Temp\\",
 		"mainOutputFolderPath": "01-Data\\Output\\",
 		"screenshotsFolderPath": "{0}\\01-Data\\Temp\\Exception_Screenshot",

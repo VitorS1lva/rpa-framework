@@ -1,4 +1,0 @@
-{
-    "ApplicationsToKill": ["notepad.exe", "chrome.exe"],
-    "ApplicationsToInitialize": ["C:\\Windows\\System32\\notepad.exe"]
-}

@@ -1,0 +1,14 @@
+[ 13-12-2024 10:57:39 ] - INFO - Main - StateMachine execution started.
+[ 13-12-2024 10:57:39 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 13-12-2024 10:57:39 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 13-12-2024 10:57:39 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 13-12-2024 10:57:39 ] - ERROR - clear_create_temp_folder - Erro ao limpar/criar o diretório 'C:\Users\Young1\Desktop\teste222222': [WinError 3] O sistema não pode encontrar o caminho especificado: 'C:\\Users\\Young1\\Desktop\\teste222222'
+[ 13-12-2024 10:57:39 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 13-12-2024 10:57:39 ] - INFO - Initialize Environment - Executando InitializeApplications para preparar o ambiente.
+[ 13-12-2024 10:57:39 ] - INFO - Initialize Applications - Inicializando aplicações...
+[ 13-12-2024 10:57:39 ] - INFO - get_applications_to_kill - Lista de aplicativos para encerrar carregada com sucesso.
+[ 13-12-2024 10:57:39 ] - INFO - kill_all_applications - Aplicação encerrada com sucesso: notepad.exe
+[ 13-12-2024 10:57:39 ] - INFO - kill_all_applications - Aplicação encerrada com sucesso: chrome.exe
+[ 13-12-2024 10:57:39 ] - ERROR - Initialize Applications - Erro ao inicializar aplicações: initialize_all_applications() takes 1 positional argument but 2 were given
+[ 13-12-2024 10:57:39 ] - INFO - Initialize Environment - Erro ao executar InitializeApplications: initialize_all_applications() takes 1 positional argument but 2 were given
+[ 13-12-2024 10:57:39 ] - INFO - Main - StateMachine execution finished successfully.

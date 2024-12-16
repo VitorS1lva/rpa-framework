@@ -1,0 +1,6 @@
+[ 13-12-2024 12:36:23 ] - INFO - Main - StateMachine execution started.
+[ 13-12-2024 12:36:23 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 13-12-2024 12:36:23 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 13-12-2024 12:36:23 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 13-12-2024 12:36:23 ] - ERROR - clear_create_temp_folder - Erro ao limpar/criar o diretório 'C:\Users\Young1\Desktop\teste222222': [WinError 3] O sistema não pode encontrar o caminho especificado: 'C:\\Users\\Young1\\Desktop\\teste222222'
+[ 13-12-2024 12:36:23 ] - INFO - Initialize Environment - Inicialização do ambiente completa.

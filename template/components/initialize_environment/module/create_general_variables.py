@@ -38,6 +38,7 @@ def create_general_variables(machine, logger):
         'config': None,  # Placeholder para config.json
         'error_table': [
             {'ID': None, 'ErrorType': None, 'ErrorMessage': None}  # Modelo inicial com colunas declaradas
-        ]
+        ],
+        'list_of_opened_apps': []
     }
     log_info(logger, "create_general_variables", "Variáveis globais inicializadas com sucesso.")

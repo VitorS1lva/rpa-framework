@@ -1,4 +1,4 @@
-import snowflake.connector
+import snowflake
 
 def make_database_connection():
     """

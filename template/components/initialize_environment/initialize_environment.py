@@ -33,7 +33,7 @@ from template.components.get_queue_items.get_queue_items import GetQueueItems
 from utilities.clear_create_temp_folder import clear_create_temp_folder
 from template.components.initialize_environment.module.create_general_variables import create_general_variables
 from utilities.log_handler import log_info
-from template.components.initialize_applications.initialize_applications import InitializeApplications
+from template.components.initialize_applications.initialize_applications import *
 
 
 class InitializeEnvironment:
@@ -79,9 +79,8 @@ class InitializeEnvironment:
 
         try:
             # Transição para o estado InitializeApplications - Proximo modulo
-            log_info(self.logger, "Initialize Environment", "Executando InitializeApplications para preparar o ambiente.")
-            init_applications = InitializeApplications(self.machine, self.logger)
-            init_applications.execute()
+            #log_info(self.logger, "Initialize Environment", "Executando InitializeApplications para preparar o ambiente.")
+            #intialize_applications(self.logger)
 
             # Transição para o estado GetQueueItems - Proximo modulo
             log_info(self.logger, "GetQueueItems ", "Executando GetQueueItems para pegar os itens de fila.")

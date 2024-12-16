@@ -1,18 +1,24 @@
 import sys
 import os
 
+
 # Adicione o caminho raiz ao sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
 
+from utilities.treat_errors import BRE, SE
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 
+
 def search_for_videos(driver):
     try:
         # Open YouTube
-        driver.get("https://www.youtube.com")
+        driver.get("https://www.yutube.com")
         driver.maximize_window()
+
+        if 'cpf nao existe':
+            raise BRE(e)
         
         time.sleep(3)
         # Find the search bar element
@@ -31,7 +37,9 @@ def search_for_videos(driver):
         # Print video titles
         for title in video_titles[:10]:  # Limit to first 10 results
             print(title.text)
-        
+            
+    except Exception as e:
+        print(e)
     finally:
         # Close the browser
         driver.quit()

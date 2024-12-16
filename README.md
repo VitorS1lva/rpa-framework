@@ -13,3 +13,4 @@
 > criar UML do projeto
 > #IMPORTANTE = Definir integração com as atividades moduladas e seu armazenamento
 > revisar a estrutura dos queue itens, adicionar mais colunas com mais informações, data de execução, etc...
+> criar lógica de captura de erro durante o framework e atualização de status do JOB (SE ou Sucess), importante lembrar que é mais interessante que o registro do job seja criado no final da execução, talvez no final state, lembrar TAMBÉM que o framework precisa consultar o snowflake para pegar o último id do job executado, acrescentar um ao seu valor e assim gerar um novo ID
