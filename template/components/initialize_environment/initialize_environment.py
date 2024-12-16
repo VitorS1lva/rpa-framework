@@ -78,6 +78,8 @@ class InitializeEnvironment:
         log_info(self.logger, "Initialize Environment", "Inicialização do ambiente completa.")
 
         try:
+            # TODO: Adicionar lógica de retrieve de JOB Id
+            
             # Transição para o estado InitializeApplications - Proximo modulo
             #log_info(self.logger, "Initialize Environment", "Executando InitializeApplications para preparar o ambiente.")
             #intialize_applications(self.logger)

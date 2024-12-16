@@ -105,7 +105,7 @@ class GetQueueItems:
                         if queue_items["retry_number"] >= max_retries:   
                             log_info(logger, "Get Queue Items", f"Item {queue_items['ID']} atingiu o limite de {max_retries} tentativas. Atualizando para 'Falha'.")
                             update_queue_item_status(queue_items, "Falha", logger, error_message)
-                            # TODO: A aplicação deve ser reiniciada, logo o escopo de intialize_applications deve ser invocado aqui dentro, também devemos adicinoar uma lógica de captura ao utilities para ser chamada aqui
+                            # TODO: A aplicação deve ser reiniciada, logo o escopo de intialize_applications deve ser invocado aqui dentro, também devemos adicionar uma lógica de captura de tela ao utilities para ser chamada aqui
                             break
                         log_info(logger, "Process", f"Erro de sistema ao processar item {queue_items['ID']}. Item será retentado pela {queue_items["retry_number"]} vez.")
         

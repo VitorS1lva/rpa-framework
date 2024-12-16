@@ -33,6 +33,9 @@ def create_general_variables(machine, logger):
     `global_variables` onde as configurações serão armazenadas.
     - `logger` (objeto): Instância do logger usada para registrar logs.
     """
+    
+    # TODO: criar variável que funcionará como uma variável de captura de informações do JOB
+    
     machine.global_variables = {
         'logger': None,  # Placeholder para logger
         'config': None,  # Placeholder para config.json
