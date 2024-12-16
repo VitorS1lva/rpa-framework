@@ -1,6 +1,5 @@
 from utilities.log_handler import *
 from template.components.initialize_applications.module.kill_all_applications import kill_all_applications
-from template.components.initialize_applications.module.initialize_all_applications import initialize_all_applications
 from template.components.initialize_applications.module.get_applications_to_kill import get_applications_to_kill
 
 def initialize_applications(config, logger):
@@ -32,10 +31,12 @@ def initialize_applications(config, logger):
    - Este módulo garante a preparação e o encerramento adequado do ambiente de aplicações.
    - As configurações e variáveis utilizadas são extraídas de arquivos de configuração, como `applications.json`.
 
-   Autor: [vitor.silva@apsen.com.br] | [samuel.joseph@apsen.com.br]
+   Autor(es):
+   - [vitor.silva@apsen.com.br]
+   - [samuel.joseph@apsen.com.br]
 
    Última Modificação:
-   - 10/12/2024
+   - 16/12/2024
    """
    # logger = self.machine.global_variables.get('logger', None)
    log_info(logger, "Initialize Applications", "Inicializando aplicações...")
@@ -51,7 +52,9 @@ def initialize_applications(config, logger):
       # Matar instâncias anteriores das aplicações
       kill_all_applications(applications_to_kill, logger)
 
-      # Abaixo deste comentário entra a lógica do desenvolvedor para incialização de aplicações, estas lógicas devem retornar uma variável com a instância da aplicação inicializada, se possível. Essas instâncias serão adicionadas a uma variável de escopo global, para serem utilizadas em outros estados externos.
+      # Abaixo deste comentário entra a lógica do desenvolvedor para incialização de aplicações,
+      # estas lógicas devem retornar uma variável com a instância da aplicação inicializada, se possível.
+      # Essas instâncias serão adicionadas a uma variável de escopo global, para serem utilizadas em outros estados externos.
       
       log_info(logger, "Initialize Applications", "Aplicações inicializadas com sucesso.")
       

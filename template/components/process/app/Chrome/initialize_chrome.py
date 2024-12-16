@@ -4,7 +4,6 @@ chromedriver_autoinstaller.install()
 
 def initialize_chrome():
     try:
-        # Set up the WebDriver (use the correct driver for your browser)
         return webdriver.Chrome()  
     
     except PermissionError as e:

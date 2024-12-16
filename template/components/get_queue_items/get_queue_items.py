@@ -19,12 +19,17 @@ Funções principais:
 Exceções:
     - Lança uma exceção caso ocorra um erro inesperado durante o processamento de itens da fila.
 
-Autor: [vitor.silva@apsen.com.br] | [samuel.joseph@apsen.com.br]
+Autor(es): 
+- [vitor.silva@apsen.com.br]
+- [samuel.joseph@apsen.com.br]
+
+
 Última Modificação: [10/12/2024]
 """
 
 from utilities.update_queue_item_status import update_queue_item_status
 from utilities.get_queue_items_from_db import get_queue_items_from_db
+from utilities.take_screenshot import take_screenshot
 from template.components.final_state import final_state
 from template.components.process.process import process
 from utilities.log_handler import *
@@ -66,16 +71,18 @@ class GetQueueItems:
 
         try:        
             while True:
-                # Buscar apenas um item da fila
-                #queue_items = get_queue_items_from_db(logger)
+                # Buscar apenas um item da fila no banco de dados
+                # queue_items = get_queue_items_from_db(logger)
                 queue_items = {
                     "id": 1,
                     "creation_date_time": "",
                     "job_id": "",
+                    "retry_number": 1,
                     "specificContent": {
                         "nomeDoVideo": "Aula de C# 1 - Iniciante"
                     }
                 }
+                
                 
                 log_info(logger, "Get Queue Items", "Buscando item da fila no banco de dados.")
 
@@ -83,7 +90,6 @@ class GetQueueItems:
                     log_info(logger, "Get Queue Items", "Nenhum item restante na fila. Transitando para o FinalState.")
                     self.machine.transition_to(final_state(self.machine))
                     break
-
 
                 while True:
                     #item = queue_items[0]  # Pega o único item retornado
@@ -94,20 +100,21 @@ class GetQueueItems:
 
                     if status == "SUCCESS":
                         log_info(logger, "Process", f"Item {queue_items['id']} processado com sucesso.")
-                        update_queue_item_status(queue_items, "Sucesso", logger, error_message)
+                        # update_queue_item_status(queue_items, "Sucesso", logger, error_message)
                         break
                     elif status == "BUSINESS_RULE_EXCEPTION":
                         log_info(logger, "Process", f"Item {queue_items['id']} descartado por regra de negócio.")
-                        update_queue_item_status(queue_items, "BRE", logger, error_message)
+                        # update_queue_item_status(queue_items, "BRE", logger, error_message)
                         break
                     elif status == "SYSTEM_EXCEPTION":
                         queue_items["retry_number"] += 1 
                         if queue_items["retry_number"] >= max_retries:   
-                            log_info(logger, "Get Queue Items", f"Item {queue_items['ID']} atingiu o limite de {max_retries} tentativas. Atualizando para 'Falha'.")
-                            update_queue_item_status(queue_items, "Falha", logger, error_message)
-                            # TODO: A aplicação deve ser reiniciada, logo o escopo de intialize_applications deve ser invocado aqui dentro, também devemos adicionar uma lógica de captura de tela ao utilities para ser chamada aqui
+                            log_info(logger, "Get Queue Items", f"Item {queue_items['id']} atingiu o limite de {max_retries} tentativas. Atualizando para 'Falha'.")
+                            # update_queue_item_status(queue_items, "Falha", logger, error_message)
+                            # TODO: A aplicação deve ser reiniciada, logo o escopo de intialize_applications deve ser invocado aqui dentro.
                             break
-                        log_info(logger, "Process", f"Erro de sistema ao processar item {queue_items['ID']}. Item será retentado pela {queue_items["retry_number"]} vez.")
-        
+                        log_info(logger, "Process", f"Erro de sistema ao processar item {queue_items['id']}. Item será retentado pela {queue_items["retry_number"]} vez.")
+
         except Exception as e:
             log_error(logger, "Get Queue Items", f"Erro ao buscar item da fila: {e}")
+            raise e

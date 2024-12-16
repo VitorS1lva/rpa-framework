@@ -18,25 +18,28 @@ Autor: [vitor.silva@apsen.com.br] | [samuel.joseph@apsen.com.br]
 
 from utilities.treat_errors import BRE, SE
 from utilities.log_handler import log_info, log_error
+from utilities.take_screenshot import take_screenshot
 from template.components.process.app.Chrome.initialize_chrome import initialize_chrome
 from template.components.process.app.Chrome.Youtube.search_for_videos import search_for_videos
 
 
+status = "SUCESSO"
+error_message = ""
+
 # TODO: PASSAR AS INSTANCIAS DE PROGRAMAS ABERTOS
 def process(item, logger):
-    log_info(logger, "Process", f"Iniciando processamento do item {item}.")
-
     try:
-        status = "SUCESSO"
-        error_message = ""
-        
+        log_info(logger, "Process", f"Iniciando processamento do item {item}.")
+
         #Passo a passo do processo entra abaixo deste comentário
         driver = initialize_chrome() # startar chrome
         status , error_message = search_for_videos(driver) # script
-        
+
+        if status is 'BUSINESS_RULE_EXCEPTION' or status is 'SYSTEM_EXCEPTION':
+            log_info(logger, "Process", f"Tirando print da tela de erro.")
+            take_screenshot(logger)
+
+        driver.quit()
         return status, error_message
     except Exception as e:
-        log_error(logger, "Process", f"Erro ao processar item {item['id']}: {e}")
-        status = "SYSTEM EXCEPTION"
-        error_message = e
-        return status, error_message
+        raise e

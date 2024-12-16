@@ -10,15 +10,22 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 
+status = "SUCESSO"
+error_message = ""
+
 
 def search_for_videos(driver):
     try:
-        # Open YouTube
-        driver.get("https://www.yutube.com")
-        driver.maximize_window()
 
-        if 'cpf nao existe':
-            raise BRE(e)
+        if True:
+            raise SE("Video nao existe")
+        # Open YouTube
+        driver.maximize_window()
+        driver.get("https://www.youtube.com")
+        
+
+        # if 'cpf nao existe':
+        #     raise BRE(e)
         
         time.sleep(3)
         # Find the search bar element
@@ -29,7 +36,7 @@ def search_for_videos(driver):
         search_box.send_keys(Keys.RETURN)
         
         # Wait for search results to load
-        time.sleep(5)
+        time.sleep(3)
         
         # Find video titles
         video_titles = driver.find_elements(By.ID, "video-title")
@@ -37,9 +44,15 @@ def search_for_videos(driver):
         # Print video titles
         for title in video_titles[:10]:  # Limit to first 10 results
             print(title.text)
-            
-    except Exception as e:
-        print(e)
-    finally:
-        # Close the browser
-        driver.quit()
+        
+        status = "SUCCESS"
+        error_message = ""
+        return status, error_message
+    except BRE as e:
+        status = "BUSINESS_RULE_EXCEPTION"
+        error_message = e
+        return status, error_message
+    except SE as e:
+        status = "SYSTEM_EXCEPTION"
+        error_message = e
+        return status, error_message

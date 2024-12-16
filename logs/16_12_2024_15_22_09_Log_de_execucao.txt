@@ -1,0 +1,23 @@
+[ 16-12-2024 15:22:09 ] - INFO - Main - StateMachine execution started.
+[ 16-12-2024 15:22:09 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 16-12-2024 15:22:09 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 16-12-2024 15:22:09 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 16-12-2024 15:22:09 ] - INFO - clear_create_temp_folder - Diretório 'C:\Users\User\Desktop\Nova pasta' limpo com sucesso.
+[ 16-12-2024 15:22:09 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 16-12-2024 15:22:09 ] - INFO - GetQueueItems  - Executando GetQueueItems para pegar os itens de fila.
+[ 16-12-2024 15:22:09 ] - INFO - Get Queue Items - Buscando item da fila no banco de dados.
+[ 16-12-2024 15:22:13 ] - INFO - Get Queue Items - Item 1 encontrado e enviado para processamento.
+[ 16-12-2024 15:22:13 ] - INFO - Process - Iniciando processamento do item {'id': 1, 'creation_date_time': '', 'job_id': '', 'retry_number': 0, 'specificContent': {'nomeDoVideo': 'Aula de C# 1 - Iniciante'}}.
+[ 16-12-2024 15:22:14 ] - INFO - Process - Tirando print da tela de erro.
+[ 16-12-2024 15:22:17 ] - INFO - Process - Erro de sistema ao processar item 1. Item será retentado pela 1 vez.
+[ 16-12-2024 15:22:17 ] - INFO - Get Queue Items - Item 1 encontrado e enviado para processamento.
+[ 16-12-2024 15:22:17 ] - INFO - Process - Iniciando processamento do item {'id': 1, 'creation_date_time': '', 'job_id': '', 'retry_number': 1, 'specificContent': {'nomeDoVideo': 'Aula de C# 1 - Iniciante'}}.
+[ 16-12-2024 15:22:18 ] - INFO - Process - Tirando print da tela de erro.
+[ 16-12-2024 15:22:20 ] - INFO - Process - Erro de sistema ao processar item 1. Item será retentado pela 2 vez.
+[ 16-12-2024 15:22:20 ] - INFO - Get Queue Items - Item 1 encontrado e enviado para processamento.
+[ 16-12-2024 15:22:20 ] - INFO - Process - Iniciando processamento do item {'id': 1, 'creation_date_time': '', 'job_id': '', 'retry_number': 2, 'specificContent': {'nomeDoVideo': 'Aula de C# 1 - Iniciante'}}.
+[ 16-12-2024 15:22:22 ] - INFO - Process - Tirando print da tela de erro.
+[ 16-12-2024 15:22:24 ] - INFO - Get Queue Items - Item 1 atingiu o limite de 3 tentativas. Atualizando para 'Falha'.
+[ 16-12-2024 15:22:24 ] - ERROR - update_queue_item_status - Erro ao atualizar status do item None: module 'snowflake' has no attribute 'connector'
+[ 16-12-2024 15:22:24 ] - ERROR - Get Queue Items - Erro ao buscar item da fila: Erro ao atualizar o status no banco de dados: module 'snowflake' has no attribute 'connector'
+[ 16-12-2024 15:22:24 ] - INFO - Main - StateMachine execution finished successfully.

@@ -16,13 +16,13 @@ Usos (Opcional):
     - É possivel alterar os dados que virão do banco de dados
 
 Autor: [Samuel Pierre] - EMAIL [samuel.joseph@apsen.com.br]
-Última Modificação: [04/12/2024] - Vitor Silva
+Última Modificação: [16/12/2024]
 """
 
 from utilities.database_connection import make_database_connection
 from utilities.log_handler import log_error
 
-def get_queue_items_from_db(logger, limit):
+def get_queue_items_from_db(logger):
     """
     Consulta o banco de dados Snowflake e retorna os itens da fila com status "Pendente".
     
@@ -51,5 +51,5 @@ def get_queue_items_from_db(logger, limit):
         conn.close()
         return result
     except Exception as e:
-        log_error(logger, "get_queue_items_from_db", f"Failed to retrieve queue items: {e}")
-        raise
+        log_error(logger, "get_queue_items_from_db", f"Falha ao retornar queue items: {e}")
+        raise ("get_queue_items_from_db", f"Falha ao retornar queue items: {e}")

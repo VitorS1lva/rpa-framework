@@ -1,0 +1,8 @@
+[ 16-12-2024 15:33:47 ] - INFO - Main - StateMachine execution started.
+[ 16-12-2024 15:33:47 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 16-12-2024 15:33:47 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 16-12-2024 15:33:47 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 16-12-2024 15:33:47 ] - INFO - clear_create_temp_folder - Diretório 'C:\Users\User\Desktop\Nova pasta' limpo com sucesso.
+[ 16-12-2024 15:33:47 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 16-12-2024 15:33:47 ] - INFO - GetQueueItems  - Executando GetQueueItems para pegar os itens de fila.
+[ 16-12-2024 15:33:49 ] - ERROR - get_queue_items_from_db - Falha ao retornar queue items: module 'snowflake' has no attribute 'connector'

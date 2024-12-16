@@ -58,7 +58,9 @@ def clear_create_temp_folder(paths, logger):
     - PermissionError: Lançada em caso de permissões insuficientes para manipular as pastas.
     - Exception: Captura erros genéricos.
     """
-    paths = [r'C:\Users\Young1\Desktop\teste222222']
+
+    # teste de arquivo a ser limpado
+    paths = [r'C:\Users\User\Desktop\Nova pasta']
 
     # Verifica se o tipo de dado passado para paths é uma lista
     if not isinstance(paths, list):

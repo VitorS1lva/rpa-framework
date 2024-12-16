@@ -1,0 +1,24 @@
+[ 16-12-2024 15:16:30 ] - INFO - Main - StateMachine execution started.
+[ 16-12-2024 15:16:30 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 16-12-2024 15:16:30 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 16-12-2024 15:16:30 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 16-12-2024 15:16:30 ] - INFO - clear_create_temp_folder - Diretório 'C:\Users\User\Desktop\Nova pasta' limpo com sucesso.
+[ 16-12-2024 15:16:30 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 16-12-2024 15:16:30 ] - INFO - GetQueueItems  - Executando GetQueueItems para pegar os itens de fila.
+[ 16-12-2024 15:16:30 ] - INFO - Get Queue Items - Buscando item da fila no banco de dados.
+[ 16-12-2024 15:16:38 ] - INFO - Get Queue Items - Item 1 encontrado e enviado para processamento.
+[ 16-12-2024 15:16:38 ] - INFO - Process - Iniciando processamento do item {'id': 1, 'creation_date_time': '', 'job_id': '', 'retry_number': 0, 'specificContent': {'nomeDoVideo': 'Aula de C# 1 - Iniciante'}}.
+[ 16-12-2024 15:16:59 ] - INFO - Process - Item 1 processado com sucesso.
+[ 16-12-2024 15:17:07 ] - INFO - Get Queue Items - Item 2 encontrado e enviado para processamento.
+[ 16-12-2024 15:17:09 ] - INFO - Process - Iniciando processamento do item {'id': 2, 'creation_date_time': '', 'job_id': '', 'retry_number': 0, 'specificContent': {'nomeDoVideo': 'Aula de C# 2 - Iniciante'}}.
+[ 16-12-2024 15:17:37 ] - INFO - Process - Item 2 processado com sucesso.
+[ 16-12-2024 15:18:00 ] - INFO - Get Queue Items - Item 3 encontrado e enviado para processamento.
+[ 16-12-2024 15:18:00 ] - INFO - Process - Iniciando processamento do item {'id': 3, 'creation_date_time': '', 'job_id': '', 'retry_number': 0, 'specificContent': {'nomeDoVideo': 'Aula de C# 3 - Iniciante'}}.
+[ 16-12-2024 15:18:12 ] - INFO - Process - Item 3 processado com sucesso.
+[ 16-12-2024 15:18:21 ] - INFO - Get Queue Items - Item 4 encontrado e enviado para processamento.
+[ 16-12-2024 15:18:21 ] - INFO - Process - Iniciando processamento do item {'id': 4, 'creation_date_time': '', 'job_id': '', 'retry_number': 0, 'specificContent': {'nomeDoVideo': 'Aula de C# 4 - Iniciante'}}.
+[ 16-12-2024 15:18:32 ] - INFO - Process - Item 4 processado com sucesso.
+[ 16-12-2024 15:18:36 ] - INFO - Get Queue Items - Item 5 encontrado e enviado para processamento.
+[ 16-12-2024 15:18:36 ] - INFO - Process - Iniciando processamento do item {'id': 5, 'creation_date_time': '', 'job_id': '', 'retry_number': 0, 'specificContent': {'nomeDoVideo': 'Aula de C# 5 - Iniciante'}}.
+[ 16-12-2024 15:18:49 ] - INFO - Process - Item 5 processado com sucesso.
+[ 16-12-2024 15:19:43 ] - INFO - Get Queue Items - Buscando item da fila no banco de dados.

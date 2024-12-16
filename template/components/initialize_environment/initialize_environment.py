@@ -21,8 +21,8 @@ Funções principais:
    - Adiciona essas variáveis à lista global do state machine.
 
 Autor(es):
-- Vitor Silva ([vitor.silva@apsen.com.br])
-- Samuel Joseph ([samuel.joseph@apsen.com.br])
+- [vitor.silva@apsen.com.br]
+- [samuel.joseph@apsen.com.br]
 
 Última Modificação:
 - 10/12/2024

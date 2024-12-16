@@ -1,0 +1,9 @@
+[ 16-12-2024 15:31:39 ] - INFO - Main - StateMachine execution started.
+[ 16-12-2024 15:31:39 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 16-12-2024 15:31:39 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.
+[ 16-12-2024 15:31:39 ] - INFO - read_config_file - JSON de configuração inicializado com sucesso.
+[ 16-12-2024 15:31:39 ] - INFO - clear_create_temp_folder - Diretório 'C:\Users\User\Desktop\Nova pasta' limpo com sucesso.
+[ 16-12-2024 15:31:39 ] - INFO - Initialize Environment - Inicialização do ambiente completa.
+[ 16-12-2024 15:31:39 ] - INFO - GetQueueItems  - Executando GetQueueItems para pegar os itens de fila.
+[ 16-12-2024 15:31:45 ] - ERROR - Get Queue Items - Erro ao buscar item da fila: get_queue_items_from_db() missing 1 required positional argument: 'limit'
+[ 16-12-2024 15:31:45 ] - INFO - Main - StateMachine execution finished successfully.
