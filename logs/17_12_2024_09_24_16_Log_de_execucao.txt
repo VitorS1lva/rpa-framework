@@ -1,0 +1,3 @@
+[ 17-12-2024 09:24:16 ] - INFO - Main - StateMachine execution started.
+[ 17-12-2024 09:24:29 ] - INFO - Initialize Environment - Inicializando ambiente.
+[ 17-12-2024 09:24:34 ] - INFO - create_general_variables - Variáveis globais inicializadas com sucesso.

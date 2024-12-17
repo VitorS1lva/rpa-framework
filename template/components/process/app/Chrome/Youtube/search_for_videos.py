@@ -17,31 +17,23 @@ error_message = ""
 def search_for_videos(driver):
     try:
 
+        # if True:
+        #     raise SE("Video nao existe")
+        
         if True:
-            raise SE("Video nao existe")
+            raise BRE("CPF inexistente")
         # Open YouTube
         driver.maximize_window()
         driver.get("https://www.youtube.com")
         
-
-        # if 'cpf nao existe':
-        #     raise BRE(e)
-        
         time.sleep(3)
-        # Find the search bar element
         search_box = driver.find_element(By.NAME, "search_query")
-        
-        # Search for "Python videos"
+
         search_box.send_keys("Python tutorials")
         search_box.send_keys(Keys.RETURN)
-        
-        # Wait for search results to load
-        time.sleep(3)
-        
-        # Find video titles
+        time.sleep(6)
         video_titles = driver.find_elements(By.ID, "video-title")
         
-        # Print video titles
         for title in video_titles[:10]:  # Limit to first 10 results
             print(title.text)
         

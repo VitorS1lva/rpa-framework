@@ -82,7 +82,11 @@ class InitializeEnvironment:
             
             # Transição para o estado InitializeApplications - Proximo modulo
             #log_info(self.logger, "Initialize Environment", "Executando InitializeApplications para preparar o ambiente.")
-            #intialize_applications(self.logger)
+            # intialize_applications(self.logger)
+
+
+            # O Desenvolvedor deve chamar a func start applications
+
 
             # Transição para o estado GetQueueItems - Proximo modulo
             log_info(self.logger, "GetQueueItems ", "Executando GetQueueItems para pegar os itens de fila.")

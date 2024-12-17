@@ -35,7 +35,7 @@ def process(item, logger):
         driver = initialize_chrome() # startar chrome
         status , error_message = search_for_videos(driver) # script
 
-        if status is 'BUSINESS_RULE_EXCEPTION' or status is 'SYSTEM_EXCEPTION':
+        if status == 'BUSINESS_RULE_EXCEPTION' or status == 'SYSTEM_EXCEPTION':
             log_info(logger, "Process", f"Tirando print da tela de erro.")
             take_screenshot(logger)
 
